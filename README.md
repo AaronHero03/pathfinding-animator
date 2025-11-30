@@ -4,8 +4,10 @@ This repository is a fork of the original maps-pathfinding project by @santifior
 
 This version has been specifically modified to include and document the necessary logic to generate dynamic, frame-by-frame animations of the Dijkstra pathfinding algorithms as they explore the city map. These animations provide a clear, visual comparison of the search process, showing which roads are considered before the final path is found.
 
+> **Dijkstra visualization**
+
 <div align="center">
-  <img src="assets/dijkstra_animation.gif" width="600">
+  <img src="assets/dijkstra_animation.gif" width="600" alt="Animated GIF showing the Dijkstra algorithm searching for the path on a city map.">
 </div>
 
 ## Introduction
