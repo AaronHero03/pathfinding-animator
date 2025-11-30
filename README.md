@@ -6,9 +6,7 @@ This version has been specifically modified to include and document the necessar
 
 > **Dijkstra visualization**
 
-<div align="center">
-  <img src="assets/dijkstra_animation.gif" width="600" alt="Animated GIF showing the Dijkstra algorithm searching for the path on a city map.">
-</div>
+<img src="assets/dijkstra_animation.gif" width="600" alt="Animated GIF showing the Dijkstra algorithm searching for the path on a city map.">
 
 ## Introduction
 
