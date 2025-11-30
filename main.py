@@ -16,7 +16,7 @@ G = ox.project_graph(G)
 fps = 40
 size = 10
 animation = True
-frames_folder = "Try"
+frames_folder = "a_star"
 
 # Global variables
 stage = "finding"
@@ -145,14 +145,13 @@ def dijkstra(orig, dest, isAnimate=False):
     pq = [(0, orig)]
     step = 0
 
-
     while pq:
         _, node = heapq.heappop(pq)
 
         if node == dest:
             stage = "found"
             if isAnimate:
-                for _ in range(22):
+                for _ in range(int(fps*0.8)):
                     save_frame(step)
             else:
                 save_frame(step)
@@ -181,6 +180,62 @@ def dijkstra(orig, dest, isAnimate=False):
         if isAnimate:
             save_frame(step)
         step += 1
+    return step
+
+def distance(node1, node2):
+    x1, y1 = G.nodes[node1]["x"], G.nodes[node1]["y"]
+    x2, y2 = G.nodes[node2]["x"], G.nodes[node2]["y"]
+    return ((x2 - x1)**2 + (y2 - y1)**2)**0.5
+
+def a_star(orig, dest, isAnimate=False):
+    global stage
+
+    for node in G.nodes:
+        G.nodes[node]["previous"] = None
+        G.nodes[node]["size"] = 0
+        G.nodes[node]["g_score"] = float("inf")
+        G.nodes[node]["f_score"] = float("inf")
+
+    for edge in G.edges:
+        style_unvisited_edge(edge)
+    
+    G.nodes[orig]["distance"] = 0
+    style_start_end(orig)
+    style_start_end(dest)
+    G.nodes[orig]["g_score"] = 0
+    G.nodes[orig]["f_score"] = distance(orig, dest)
+
+    pq = [(G.nodes[orig]["f_score"], orig)]
+    step = 0
+
+    while pq:
+        _, node = heapq.heappop(pq)
+        
+        if node == dest:
+            stage = "found"
+            if isAnimate:
+                for _ in range(int(fps*0.8)):
+                    save_frame(step)
+            else:
+                save_frame(step)
+            return step
+        
+        for edge in G.out_edges(node):
+            style_visited_edge((edge[0], edge[1], 0))
+            neighbor = edge[1]
+            tentative_g_score = G.nodes[node]["g_score"] + distance(node, neighbor)
+            if tentative_g_score < G.nodes[neighbor]["g_score"]:
+                G.nodes[neighbor]["previous"] = node
+                G.nodes[neighbor]["g_score"] = tentative_g_score
+                G.nodes[neighbor]["f_score"] = tentative_g_score + distance(neighbor, dest)
+                heapq.heappush(pq, (G.nodes[neighbor]["f_score"], neighbor))
+                for edge2 in G.out_edges(neighbor):
+                    style_active_edge((edge2[0], edge2[1], 0))  
+        
+        if isAnimate:
+            save_frame(step)
+        step += 1
+
     return step
 
 # Reconstruct shortest route
@@ -220,9 +275,9 @@ def reconstruct_path(orig, dest, isAnimate=False, algorithm=None):
     print(f"Avg. speed: {sum(speeds)/len(speeds)}")
     print(f"Total time: {dist/(sum(speeds)/len(speeds)) * 60} min")
 
-    if not isAnimate:
-        stage = "found"
-        save_frame(step)
+    stage = "found"
+    save_frame(step)
+    
 
 # Generate an animation of the algorithm
 def generate_video(frames_folder, output_video):
@@ -246,8 +301,8 @@ def generate_video(frames_folder, output_video):
 start = random.choice(list(G.nodes))
 end = random.choice(list(G.nodes))
 
-total_steps = dijkstra(start, end, isAnimate=animation)
+total_steps = a_star(start, end, isAnimate=animation)
 reconstruct_path(start, end, isAnimate=animation)
 
 if animation:
-    generate_video(frames_folder,"output.mp4")
+    generate_video(frames_folder,"test2.mp4")
