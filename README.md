@@ -5,7 +5,7 @@ This repository is a fork of the original maps-pathfinding project by @santifior
 This version has been specifically modified to include and document the necessary logic to generate dynamic, frame-by-frame animations of the A\* and Dijkstra pathfinding algorithms as they explore the city map. These animations provide a clear, visual comparison of the search process, showing which roads are considered before the final path is found.
 
 <div align="center">
-  <img src="assets/dijkstra_animation.gif" width="650">
+  <img src="assets/dijkstra_animation.gif" width="600">
 </div>
 
 ## Introduction
@@ -13,10 +13,6 @@ This version has been specifically modified to include and document the necessar
 The experiments conducted in the original work can now be easily reproduced, with the added capability of saving each intermediate frame to create a complete visual animation of the search process.
 
 The main focus of this fork is to implement the printing mechanism to save every intermediate step, allowing users to generate high-quality MP4 or GIF animations directly from the python script.
-
-## How to use
-
-This code relies on the osmnx library and standard Python animation libraries (e.g., matplotlib.animation). Please refer to the osmnx documentation for installation instructions and detailed usage guidelines.
 
 ## Installation
 
