@@ -2,7 +2,7 @@
 
 This repository is a fork of the original maps-pathfinding project by @santifiorino, which was used for the YouTube video "Comparing Algorithms: A\* vs Dijkstra, on the city's map."
 
-This version has been specifically modified to include and document the necessary logic to generate dynamic, frame-by-frame animations of the A\* and Dijkstra pathfinding algorithms as they explore the city map. These animations provide a clear, visual comparison of the search process, showing which roads are considered before the final path is found.
+This version has been specifically modified to include and document the necessary logic to generate dynamic, frame-by-frame animations of the Dijkstra pathfinding algorithms as they explore the city map. These animations provide a clear, visual comparison of the search process, showing which roads are considered before the final path is found.
 
 <div align="center">
   <img src="assets/dijkstra_animation.gif" width="600">
