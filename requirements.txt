@@ -1,0 +1,10 @@
+# Core Geospatial and Graph Libraries
+osmnx
+
+# Data Manipulation (Often required by osmnx and analysis)
+numpy
+pandas
+
+# Visualization and Animation
+matplotlib
+imageio
